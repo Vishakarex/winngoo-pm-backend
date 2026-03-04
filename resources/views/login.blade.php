@@ -84,7 +84,11 @@
         </div>
     @enderror
 
-    <button type="submit" class="w-full btn-primary py-3 rounded-xl font-medium">Unlock</button>
+    {{-- <button type="submit" class="w-full btn-primary py-3 rounded-xl font-medium">Unlock</button> --}}
+
+    <button type="submit" id="unlockBtn" class="w-full btn-primary py-3 rounded-xl font-medium">
+    Unlock
+</button>
 </form>
             {{-- <button onclick="unlockVault()" class="w-full btn-primary py-3 rounded-xl font-medium">Unlock</button> --}}
         </div>
@@ -230,7 +234,13 @@
             else initTextAnimations();
         })();
     </script>
-
+<script>
+document.querySelector('form').addEventListener('submit', function() {
+    const btn = document.getElementById('unlockBtn');
+    btn.disabled = true;
+    btn.innerText = 'Please wait...';
+});
+</script>
     <style>
         @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
     </style>

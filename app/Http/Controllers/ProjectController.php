@@ -57,6 +57,7 @@ public function store(Request $request)
         'website_url'  => 'nullable|url',
         'android_url'  => 'nullable|url',
         'ios_url'      => 'nullable|url',
+         'logo_url'      => 'nullable|url',
     ]);
 
     $project = Project::create([
@@ -151,7 +152,16 @@ public function destroy(Request $request, $id)
 
 
 
+public function bulkDelete(Request $request)
+{
+    $ids = $request->project_ids;
 
+    if (!empty($ids)) {
+        Project::whereIn('id', $ids)->delete();
+    }
+
+    return redirect()->back()->with('success', 'Selected projects deleted successfully.');
+}
 
 
 

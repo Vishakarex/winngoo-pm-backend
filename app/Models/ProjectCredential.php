@@ -13,11 +13,18 @@ class ProjectCredential extends Model
     'login_url',
     'email',
     'password',
-    'notes'
+    'notes',
+     'otp',
+        'otp_expires_at',
 ];
 
 public function project()
 {
     return $this->belongsTo(Project::class);
 }
+
+  protected $casts = [
+        'otp_expires_at' => 'datetime',
+             'password' => 'encrypted',  
+    ];
 }
