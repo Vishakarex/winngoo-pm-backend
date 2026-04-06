@@ -1,0 +1,25 @@
+name: Deploy Laravel to Local
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Deploy project
+        run: |
+          cd C:\xampp\htdocs
+          if not exist wingoo git clone https://github.com/Vishakarex/winngoo-pm-backend wingoo
+          cd wingoo
+          git pull origin main
+          composer install --no-interaction --prefer-dist
+          C:\xampp\php\php artisan migrate --force
+          C:\xampp\php\php artisan config:cache
+          C:\xampp\php\php artisan route:cache
+          C:\xampp\php\php artisan view:cache
