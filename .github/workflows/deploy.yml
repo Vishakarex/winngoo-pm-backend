@@ -17,14 +17,9 @@ jobs:
         run: |
           echo "Starting deployment..."
 
-          cd C:\xampp\htdocs
+          cd "C:\Users\MY PC\wingoo"
 
-          if not exist wingoo (
-            git clone https://github.com/Vishakarex/winngoo-pm-backend wingoo
-          )
-
-          cd wingoo
-
+          echo "Pulling latest code..."
           git pull origin main
 
           echo "Installing dependencies..."
